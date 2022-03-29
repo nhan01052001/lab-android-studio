@@ -2,6 +2,8 @@ package com.example.ontap;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class ActiveProductDetail extends AppCompatActivity {
         setContentView(R.layout.detail_product);
         product = (Product) getIntent().getSerializableExtra("selectedProduct");
         showProductInfor(product);
+        backMain();
     }
 
     private void showProductInfor(Product product) {
@@ -35,8 +38,18 @@ public class ActiveProductDetail extends AppCompatActivity {
         TextView tvGiamGia = findViewById(R.id.tvGiamGia);
 
         tvGiamGia.setText("$ " +product.getTvGiamGia());
+    }
 
+    private void backMain() {
+        Button addToCartBtn = findViewById(R.id.addToCartBtn);
 
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActiveProductDetail.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
